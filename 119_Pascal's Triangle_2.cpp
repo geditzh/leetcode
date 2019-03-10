@@ -2,7 +2,6 @@
 #include <vector>
 
 using namespace std;
-
 class Solution {
 public:
     vector<int> getRow(int rowIndex) {
@@ -21,7 +20,8 @@ public:
 
 int main(int argc, char *argv[])
 {
-    vector<vector<int>> a = generate(5);
+    Solution s;
+    vector<vector<int>> a = s.getRow(5);
     for(int i=0; i<a.size(); i++)
     {
         for(int j=0; j<a[i].size(); j++)
