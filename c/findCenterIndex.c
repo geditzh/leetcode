@@ -1,5 +1,9 @@
 #include <stdio.h>
 
+/* 思路：
+创建两个数组，数组1下标i保存到i之前的所有元素和，
+数组2下标i保存i之后的所有元素和，循环判断，相等则为中心索引 
+*/
 int pivotIndex(int* nums, int numsSize){
     int num1[numsSize]; 
     int num2[numsSize];
