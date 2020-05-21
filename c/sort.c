@@ -147,6 +147,50 @@ void QuickSort(int *nums, int len)
     QuickSortCore(nums, 0, len - 1);
 }
 
+/* 快速排序 */
+void Merge(int *nums, int start, int mid, int end)
+{
+    int numsTemp[end-start+1];
+    int i, j, o = 0;
+    i = start;
+    j = mid + 1;
+    while (i <= mid && j <= end) {
+        if (nums[i] > nums[j]) {
+            numsTemp[o++] = nums[j++];
+        } else {
+            numsTemp[o++] = nums[i++];
+        }
+    }
+    while (i <= mid) {
+        numsTemp[o++] = nums[i++];
+    }
+    while (j <= end) {
+        numsTemp[o++] = nums[j++];
+    }
+    for (o = 0; o < end - start + 1; o++) {
+        nums[o + start] = numsTemp[o];
+    }
+}
+
+/* 归并排序 */
+void MergeSortDiv(int *nums, int start, int end)
+{
+    int mid;
+    if (start < end) {
+        mid = (start + end) / 2;
+        MergeSortDiv(nums, start, mid);
+        MergeSortDiv(nums, mid+1, end);
+        Merge(nums, start, mid, end);
+    }
+}
+void MergeSort(int *nums, int len) 
+{
+    int start, end;
+    start = 0;
+    end = len - 1;
+    MergeSortDiv(nums, start, end);
+}
+
 int main()
 {
     int nums[9] = {5,8,6,1,3,0,15,4,77};
@@ -156,7 +200,7 @@ int main()
         printf("%d, ", nums[i]);
     }
     putchar('\n');
-    QuickSort(nums, len);
+    MergeSort(nums, len);
     for (i = 0; i < len; i++) {
         printf("%d ", nums[i]);
     }
