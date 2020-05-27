@@ -147,7 +147,7 @@ void QuickSort(int *nums, int len)
     QuickSortCore(nums, 0, len - 1);
 }
 
-/* 快速排序 */
+/* 归并排序 */
 void Merge(int *nums, int start, int mid, int end)
 {
     int numsTemp[end-start+1];
@@ -172,7 +172,6 @@ void Merge(int *nums, int start, int mid, int end)
     }
 }
 
-/* 归并排序 */
 void MergeSortDiv(int *nums, int start, int end)
 {
     int mid;
