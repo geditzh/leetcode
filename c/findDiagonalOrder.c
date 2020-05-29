@@ -1,22 +1,24 @@
 #include <stdio.h>
 
 /* 思路：
-创建两个数组，数组1下标i保存到i之前的所有元素和，
-数组2下标i保存i之后的所有元素和，循环判断，相等则为中心索引 
+注意4个边界问题，当还没遍历到对角线，往右上移动一格，当遍历到
+对角线时，往下移动一格
 */
-int* findDiagonalOrder(int* matrix[][3], int matrixSize, int* matrixColSize, int* returnSize){
-    int m = matrixSize;
-    int n = *matrixColSize;
-    if (matrixSize == 0 || matrix == NULL || *matrixColSize == 0) {
+int* findDiagonalOrder(int** matrix, int matrixSize, int* matrixColSize, int* returnSize){
+    if (matrixSize == 0) {
         *returnSize = 0;
-        return 0;
+        return NULL;
     }
     int i, j, o;
+    int m = matrixSize;
+    int n = *matrixColSize;
+    
     *returnSize=matrixSize*(*matrixColSize);
     int *result = (int *)malloc(sizeof(int) * (*returnSize));
     i = 0;
     j = 0;
-    while (i != m - 1 || j != n - 1) {
+    o = 0;
+    while (o < (*returnSize)) {
         while (i >= 0 && j < n) {
             result[o++] = matrix[i][j];
             if (j == n - 1) {
@@ -36,7 +38,6 @@ int* findDiagonalOrder(int* matrix[][3], int matrixSize, int* matrixColSize, int
         }
         j += 1;
     }
-    result[o] = matrix[i][j];
     return result;
 }
 
