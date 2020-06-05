@@ -2,22 +2,28 @@
 #include <stdlib.h>
 
 /* 思路：
-暴力求解方法，存储数据，然后读取
+首先按照对角线元素交换，然后每行元素都倒序，就是旋转90度
 */
-
-int mycmp(void *a, void *b)
-{
-    int *num1 = (int *)a;
-    int *num2 = (int *)b;
-    return *num2 - *num1;
-}
-
-int main()
-{
-    int nums[10] = {8,7,6,5,3,2,4,5,6,8};
-    qsort(nums, 10, sizeof(int), mycmp);    
-    for (int i = 0; i < 10; i++) {
-        printf("%d ", nums[i]);
+void rotate(int** matrix, int matrixSize, int* matrixColSize){
+    int i, j, temp;
+    for (i = 0; i < matrixSize; i++) {
+        for (j = i + 1; j < matrixColSize[i]; j++) {
+            temp = matrix[i][j];
+            matrix[i][j] = matrix[j][i];
+            matrix[j][i] = temp;
+        }
     }
-    printf("\n");
+    for (i = 0; i < matrixSize; i++) {
+        int front, rear;
+        front = 0; 
+        rear = matrixColSize[i] - 1;
+        while (front < rear) {
+            temp = matrix[i][front];
+            matrix[i][front] = matrix[i][rear];
+            matrix[i][rear] = temp;
+            front++;
+            rear--;
+        }
+    }
+    return matrix;
 }

@@ -2,22 +2,30 @@
 #include <stdlib.h>
 
 /* 思路：
-暴力求解方法，存储数据，然后读取
+深度优先遍历，也叫回溯法
 */
-
-int mycmp(void *a, void *b)
+void DFS(int left, int right, int n, char *temp, int index, char **result, int *returnSize)
 {
-    int *num1 = (int *)a;
-    int *num2 = (int *)b;
-    return *num2 - *num1;
+    if (left == n && right == n) {
+        result[(*returnSize)] = (char *)malloc(sizeof(char) * 2*n+1);
+        strcpy(result[(*returnSize)++], temp);
+        return;
+    }
+    if (left < n) {
+        temp[index] = '(';
+        DFS(left + 1, right, n, temp, index + 1, result, returnSize);
+    }
+    if (right < n && left > right) {
+        temp[index] = ')';
+        DFS(left, right + 1, n, temp, index + 1, result, returnSize);
+    }
 }
 
-int main()
-{
-    int nums[10] = {8,7,6,5,3,2,4,5,6,8};
-    qsort(nums, 10, sizeof(int), mycmp);    
-    for (int i = 0; i < 10; i++) {
-        printf("%d ", nums[i]);
-    }
-    printf("\n");
+char ** generateParenthesis(int n, int* returnSize){
+    char **result = (char **)malloc(sizeof(char *) * 2048);
+    char *temp = (char *)malloc(2 * n + 1);
+    memset(temp, 0, 2*n+1);
+    *returnSize = 0;
+    DFS(0, 0, n, temp, 0, result, returnSize);
+    return result;
 }
