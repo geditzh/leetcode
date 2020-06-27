@@ -32,3 +32,11 @@ void setZeroes(int** matrix, int matrixSize, int* matrixColSize){
         }
     }
 }
+
+class tion:
+    def longestPalindrome(self, s)
+    {
+        if not s:
+            return ""
+        if_palindrome = {False, }
+    }
