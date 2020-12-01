@@ -4,7 +4,7 @@
 #include <string>
 using namespace std;
 
-vector<int> plusOne(vector<int>& digits)
+vector<int> PlusOne(vector<int>& digits)
 {
     for(int i = digits.size()-1; i>=0; i--)
     {
@@ -21,9 +21,10 @@ vector<int> plusOne(vector<int>& digits)
 int main(int argc, char *argv[])
 {
     vector<int>a = {5,6,2,0,0,2,4,9},b;
-    b = PulsOne(a);
+    b = PlusOne(a);
     for(vector<int>::iterator it=b.begin(); it != b.end(); it++)
     {
         cout<<*it;
     }
+    return 0;
 }

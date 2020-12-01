@@ -1,3 +1,11 @@
+#include <stdio.h>
+
+/* 思路：
+如果有进位，则清零进位加一，若都要进位，则创建新数组
+*/
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
 int res[2];
 int BinarySearchLeft(int *nums, int numsSize, int target) 
 {
@@ -56,4 +64,18 @@ int* searchRange(int* nums, int numsSize, int target, int* returnSize){
 
     *returnSize = 2;
     return res;
+}
+
+
+int main()
+{
+    int nums[1] = {1};
+    int numsSize = 1;
+    int target = 0;
+    int returnSize;
+    int *res = searchRange(nums, numsSize, target, &returnSize);
+    
+    printf("[%d, %d]", res[0], res[1]);
+    
+    return 0;
 }

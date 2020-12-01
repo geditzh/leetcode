@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /* 思路：
 创建map存储第几列需要清零，然后用行指针存储循环的行，
@@ -39,8 +40,9 @@ char * longestCommonPrefix(char strs[][2], int strsSize){
     return res;
 }
 
-void main()
+int main()
 {
-    char a[2][2] = {"aa", "a"};
+    char a[2][2] = {"a", "a"};
     longestCommonPrefix(a, 2);
+    return 0;
 }
